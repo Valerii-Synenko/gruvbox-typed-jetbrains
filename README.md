@@ -18,7 +18,7 @@ What's included:
 - **Gruvbox Typed Dark** UI theme on the Gruvbox Dark Medium palette.
 - **Gruvbox Typed Dark Medium** editor color scheme: general code, Python, Kotlin/Java, JavaScript/TypeScript,
   JSON, YAML, Markdown, SQL, console and VCS diffs.
-- **Gruvbox Typed Dark Hard**: the same scheme on the darker Gruvbox hard background (`#1d2021`).
+- **Gruvbox Typed Dark Hard** UI theme and color scheme: the same colors on the darker Gruvbox hard background (`#1d2021`).
 - **Python type hint highlighting** for parameter, return and variable annotations, `Optional[...]`, `X | None`,
   nested generics, string annotations (`"Foo"`), `TypeAlias`, `type X = ...` and PEP 695 generics (`def f[T](x: T) -> T`).
   Available wherever the Python plugin is installed (PyCharm, IntelliJ IDEA with Python, ...).
@@ -58,10 +58,14 @@ Test projects have no Python SDK, so the test marks built-in names the way PyCha
   Download the [latest release](https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/releases/latest) and install it using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-Then select the theme in <kbd>Settings</kbd> | <kbd>Appearance & Behavior</kbd> | <kbd>Appearance</kbd> | <kbd>Theme</kbd> > **Gruvbox Typed Dark**.
-The editor color scheme **Gruvbox Typed Dark Medium** is switched on together with the theme.
-For the darker background pick **Gruvbox Typed Dark Hard** in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd>.
-Both schemes also work with any other UI theme.
+Then select a theme in <kbd>Settings</kbd> | <kbd>Appearance & Behavior</kbd> | <kbd>Appearance</kbd> | <kbd>Theme</kbd>:
+
+| UI theme                    | Editor color scheme switched on with it | Background |
+|-----------------------------|-----------------------------------------|------------|
+| **Gruvbox Typed Dark**      | **Gruvbox Typed Dark Medium**           | `#282828`  |
+| **Gruvbox Typed Dark Hard** | **Gruvbox Typed Dark Hard**             | `#1d2021`  |
+
+Both color schemes can also be picked on their own, with any UI theme, in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd>.
 
 ## Configuration
 
@@ -107,8 +111,8 @@ so it is cheap and also runs while the IDE is indexing.
 ./gradlew buildPlugin
 ```
 
-The Dark Hard scheme is generated from Dark Medium at build time (`generateHardScheme` in `build.gradle.kts`),
-so edit only `Gruvbox Typed Dark Medium.xml`.
+The Dark Hard theme and color scheme are generated from the Dark / Dark Medium sources at build time
+(`generateHardVariants` in `build.gradle.kts`), so edit only `GruvboxTypedDark.theme.json` and `Gruvbox Typed Dark Medium.xml`.
 
 Requires JDK 21. The plugin is built against PyCharm 2026.3 and supports IDE builds 252 (2025.2) and newer.
 

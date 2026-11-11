@@ -47,16 +47,36 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         }
     }
 
-    fun `test theme references existing scheme`() {
-        val theme = loadTheme()
+    fun `test themes reference their schemes`() {
+        for ((file, name, scheme) in THEMES) {
+            val theme = loadTheme(file)
 
-        assertEquals("Gruvbox Typed Dark", theme["name"].asString)
-        assertTrue(theme["dark"].asBoolean)
-        assertNotNull(javaClass.getResource(theme["editorScheme"].asString))
+            assertEquals(name, theme["name"].asString)
+            assertTrue(theme["dark"].asBoolean)
+            assertEquals("/colors/$scheme.xml", theme["editorScheme"].asString)
+            assertNotNull(javaClass.getResource(theme["editorScheme"].asString))
+        }
+    }
+
+    fun `test hard theme shifts only the background palette`() {
+        val dark = loadTheme("GruvboxTypedDark").getAsJsonObject("colors")
+        val hard = loadTheme("GruvboxTypedDarkHard").getAsJsonObject("colors")
+
+        assertEquals("#1d2021", hard["bg0"].asString)
+        assertEquals("#282828", hard["bg0_s"].asString)
+        assertEquals("#1d2021", hard["bg0_h"].asString)
+        for (key in dark.keySet() - setOf("bg0", "bg0_s")) {
+            assertEquals(key, dark[key], hard[key])
+        }
+        assertEquals(loadTheme("GruvboxTypedDark")["ui"], loadTheme("GruvboxTypedDarkHard")["ui"])
     }
 
     fun `test theme colors are named palette colors or hex values`() {
-        val theme = loadTheme()
+        for ((file) in THEMES) checkThemeColors(file)
+    }
+
+    private fun checkThemeColors(file: String) {
+        val theme = loadTheme(file)
         val palette = theme.getAsJsonObject("colors").keySet()
         val unknown = mutableListOf<String>()
 
@@ -72,7 +92,7 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         check("ui", theme["ui"])
         check("colors", theme["colors"])
 
-        assertEmpty(unknown)
+        assertEmpty(file, unknown)
     }
 
     private fun loadScheme(name: String = "Gruvbox Typed Dark Medium"): EditorColorsSchemeImpl {
@@ -81,10 +101,16 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         return EditorColorsSchemeImpl(parent).apply { readExternal(element) }
     }
 
-    private fun loadTheme(): JsonObject =
-        javaClass.getResourceAsStream("/themes/GruvboxTypedDark.theme.json")!!.reader().use { JsonParser.parseReader(it).asJsonObject }
+    private fun loadTheme(file: String = "GruvboxTypedDark"): JsonObject =
+        javaClass.getResourceAsStream("/themes/$file.theme.json")!!.reader().use { JsonParser.parseReader(it).asJsonObject }
 
     private companion object {
         val HEX = Regex("#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?")
+
+        /** Theme file, theme name, editor scheme name. */
+        val THEMES = listOf(
+            Triple("GruvboxTypedDark", "Gruvbox Typed Dark", "Gruvbox Typed Dark Medium"),
+            Triple("GruvboxTypedDarkHard", "Gruvbox Typed Dark Hard", "Gruvbox Typed Dark Hard"),
+        )
     }
 }
