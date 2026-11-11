@@ -31,15 +31,23 @@ Gruvbox color palette by Pavel Pertsev (morhetz), MIT License.
 
 ## Screenshots
 
+### Gruvbox Typed Dark Medium
+
 | Before: type hint colors off                | After: Gruvbox Typed                      |
 |---------------------------------------------|-------------------------------------------|
 | ![Before](.github/readme/python-before.png) | ![After](.github/readme/python-after.png) |
+
+### Gruvbox Typed Dark Hard
+
+| Before: type hint colors off                     | After: Gruvbox Typed                           |
+|--------------------------------------------------|------------------------------------------------|
+| ![Before](.github/readme/python-before-hard.png) | ![After](.github/readme/python-after-hard.png) |
 
 Before, `dict`, `list`, `int` and `tuple` inside annotations come out orange while the equally built-in `str` and `bool` are yellow.
 After, built-in types are always orange and classes are always yellow.
 
 The images are rendered from [`demo/type_hints.py`](demo/type_hints.py) by
-`./gradlew test --tests '*ReadmeScreenshotsTest*' -Pscreenshots` with the bundled color scheme.
+`./gradlew test --tests '*ReadmeScreenshotsTest*' -Pscreenshots` with the bundled color schemes.
 Test projects have no Python SDK, so the test marks built-in names the way PyCharm does.
 
 ## Installation

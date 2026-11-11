@@ -33,18 +33,20 @@ class ReadmeScreenshotsTest : BasePlatformTestCase() {
         // Test projects have no Python SDK, so built-in names are marked the way PyBuiltinHighlightingAnnotator does it
         LanguageAnnotators.INSTANCE.addExplicitExtension(PythonLanguage.INSTANCE, BuiltinNamesAnnotator(), testRootDisposable)
 
-        render(demo, File(outputDir, "python-after.png")) {}
-        render(demo, File(outputDir, "python-before.png")) {
-            // Type hint colors turned off: PyCharm's own PY.ANNOTATION / PY.BUILTIN_NAME tie decides again
-            setAttributes(PyTypeHintHighlighting.TYPE_HINT, TextAttributes())
-            setAttributes(PyTypeHintHighlighting.BUILTIN_TYPE_HINT, TextAttributes())
+        for ((scheme, suffix) in listOf("Gruvbox Typed Dark Medium" to "", "Gruvbox Typed Dark Hard" to "-hard")) {
+            render(demo, scheme, File(outputDir, "python-after$suffix.png")) {}
+            render(demo, scheme, File(outputDir, "python-before$suffix.png")) {
+                // Type hint colors turned off: PyCharm's own PY.ANNOTATION / PY.BUILTIN_NAME tie decides again
+                setAttributes(PyTypeHintHighlighting.TYPE_HINT, TextAttributes())
+                setAttributes(PyTypeHintHighlighting.BUILTIN_TYPE_HINT, TextAttributes())
+            }
         }
     }
 
-    private fun render(text: String, file: File, customize: EditorColorsSchemeImpl.() -> Unit) {
+    private fun render(text: String, schemeName: String, file: File, customize: EditorColorsSchemeImpl.() -> Unit) {
         myFixture.configureByText("type_hints.py", text)
         val editor = myFixture.editor as EditorEx
-        editor.colorsScheme = loadScheme().apply {
+        editor.colorsScheme = loadScheme(schemeName).apply {
             editorFontName = "JetBrains Mono"
             editorFontSize = 14
             customize()
@@ -84,8 +86,8 @@ class ReadmeScreenshotsTest : BasePlatformTestCase() {
         if (component is java.awt.Container) component.components.forEach(::layoutRecursively)
     }
 
-    private fun loadScheme(): EditorColorsSchemeImpl {
-        val element = JDOMUtil.load(javaClass.getResourceAsStream("/colors/Gruvbox Typed Dark Medium.xml")!!)
+    private fun loadScheme(name: String): EditorColorsSchemeImpl {
+        val element = JDOMUtil.load(javaClass.getResourceAsStream("/colors/$name.xml")!!)
         val parent = EditorColorsManager.getInstance().getScheme("Darcula")!!
         return EditorColorsSchemeImpl(parent).apply { readExternal(element) }
     }
