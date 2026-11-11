@@ -64,11 +64,26 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
 
         assertEquals("#1d2021", hard["bg0"].asString)
         assertEquals("#282828", hard["bg0_s"].asString)
-        assertEquals("#1d2021", hard["bg0_h"].asString)
-        for (key in dark.keySet() - setOf("bg0", "bg0_s")) {
+        assertEquals("#141617", hard["bg0_h"].asString)
+        for (key in dark.keySet() - setOf("bg0", "bg0_s", "bg0_h")) {
             assertEquals(key, dark[key], hard[key])
         }
         assertEquals(loadTheme("GruvboxTypedDark")["ui"], loadTheme("GruvboxTypedDarkHard")["ui"])
+    }
+
+    fun `test themes use islands layout`() {
+        for ((file) in THEMES) {
+            val theme = loadTheme(file)
+            val ui = theme.getAsJsonObject("ui")
+
+            assertEquals(file, "ExperimentalDark", theme["parentTheme"].asString)
+            assertEquals(file, 1, ui["Islands"].asInt)
+            // Islands and the gap between them must differ, or the islands are invisible
+            val colors = theme.getAsJsonObject("colors")
+            val island = colors[ui.getAsJsonObject("Island")["borderColor"].asString].asString
+            val gap = colors[ui["MainWindow.background"].asString].asString
+            assertFalse(file, island.equals(gap, ignoreCase = true))
+        }
     }
 
     fun `test theme colors are named palette colors or hex values`() {

@@ -111,9 +111,12 @@ val generateHardVariants by tasks.registering {
             themeSource.asFile.readText()
                 .swap(""""name": "Gruvbox Typed Dark",""", """"name": "Gruvbox Typed Dark Hard",""")
                 .swap(""""editorScheme": "/colors/Gruvbox Typed Dark Medium.xml",""", """"editorScheme": "/colors/Gruvbox Typed Dark Hard.xml",""")
-                // Panels and editor move to bg0_h, inputs and popups to bg0; the chrome is already bg0_h
+                // Islands (panels, editor) move to bg0_h, inputs and popups to bg0
                 .swap(""""bg0": "#282828",""", """"bg0": "#1d2021",""")
-                .swap(""""bg0_s": "#32302f",""", """"bg0_s": "#282828","""),
+                .swap(""""bg0_s": "#32302f",""", """"bg0_s": "#282828",""")
+                // The gap between islands and the chrome must be darker than the islands, and the palette has
+                // nothing darker than bg0_h, so the Hard variant uses an extra off-palette shade
+                .swap(""""bg0_h": "#1d2021",""", """"bg0_h": "#141617","""),
         )
     }
 }

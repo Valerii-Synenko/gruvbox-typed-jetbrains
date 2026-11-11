@@ -3,7 +3,7 @@
   "dark": true,
   "author": "Valerii Synenko",
   "editorScheme": "/colors/Gruvbox Typed Dark Medium.xml",
-  "parentTheme": "Darcula",
+  "parentTheme": "ExperimentalDark",
 
   "colors": {
     "bg0_h": "#1d2021",
@@ -54,6 +54,20 @@
       "errorForeground": "red",
       "caretForeground": "fg"
     },
+
+    "Islands": 1,
+    "Island": {
+      "arc": 20,
+      "arc.compact": 16,
+      "borderArcLength": 14,
+      "borderArcLength.compact": 10,
+      "borderWidth": 6,
+      "borderWidth.compact": 4,
+      "borderColor": "bg0",
+      "inactiveAlpha": 0.56
+    },
+
+    "MainWindow.background": "bg0_h",
 
     "ActionButton": {
       "hoverBackground": "bg1",
@@ -130,8 +144,8 @@
     "DebuggerPopup.borderColor": "bg2",
 
     "DefaultTabs": {
-      "background": "bg0_h",
-      "borderColor": "bg0_h",
+      "background": "bg0",
+      "borderColor": "bg0",
       "hoverBackground": "bg1",
       "inactiveUnderlineColor": "bg4",
       "underlineColor": "yellow",
@@ -159,15 +173,15 @@
     "EditorPane.inactiveBackground": "bg0",
 
     "EditorTabs": {
-      "background": "bg0_h",
-      "borderColor": "bg0_h",
+      "background": "bg0",
+      "borderColor": "bg0",
       "underlinedTabBackground": "bg0",
       "underlinedTabForeground": "fg",
       "underlineColor": "yellow",
       "underlineHeight": 2,
       "inactiveUnderlineColor": "bg4",
       "hoverBackground": "bg1",
-      "inactiveColoredFileBackground": "bg0_h"
+      "inactiveColoredFileBackground": "bg0"
     },
 
     "FileColor": {
@@ -454,7 +468,7 @@
 
     "StatusBar": {
       "background": "bg0_h",
-      "borderColor": "bg1",
+      "borderColor": "bg0_h",
       "hoverBackground": "bg1",
       "Widget.hoverBackground": "bg1",
       "Widget.pressedBackground": "bg2",
@@ -557,10 +571,10 @@
       "Button.hoverBackground": "bg1",
       "Button.selectedBackground": "bg2",
       "Button.selectedForeground": "fg",
-      "Header.background": "bg0_s",
+      "Header.background": "bg0",
       "Header.inactiveBackground": "bg0",
       "Header.borderColor": "bg1",
-      "HeaderCloseButton.background": "bg0_s",
+      "HeaderCloseButton.background": "bg0",
       "HeaderTab.selectedBackground": "bg1",
       "HeaderTab.selectedInactiveBackground": "bg0_s",
       "HeaderTab.hoverBackground": "bg1",
@@ -570,7 +584,7 @@
       "HeaderTab.underlinedTabBackground": "bg1",
       "HeaderTab.underlinedTabInactiveBackground": "bg0_s",
       "Stripe.background": "bg0_h",
-      "Stripe.borderColor": "bg1",
+      "Stripe.borderColor": "bg0_h",
       "Stripe.separatorColor": "bg1"
     },
 
