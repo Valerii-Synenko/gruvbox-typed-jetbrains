@@ -26,7 +26,9 @@
     "orange": "#fe8019",
     "faded_blue": "#458588",
     "selection": "#504945",
-    "hover": "#3c3836"
+    "hover": "#3c3836",
+    "transparent": "#1d202100",
+    "border-transparent": "#ebdbb221"
   },
 
   "ui": {
@@ -247,7 +249,8 @@
       "background": "bg0_h",
       "foreground": "fg",
       "inactiveBackground": "bg0_h",
-      "separatorColor": "bg1",
+      "borderColor": "transparent",
+      "separatorColor": "border-transparent",
       "Dropdown.hoverBackground": "bg1",
       "Dropdown.pressedBackground": "bg2",
       "Icon.hoverBackground": "bg1",
@@ -260,7 +263,7 @@
       "hoverBackground": "bg1",
       "selectedBackground": "bg0",
       "selectedForeground": "fg",
-      "separatorColor": "bg1"
+      "separatorColor": "border-transparent"
     },
 
     "Menu": {
@@ -284,7 +287,7 @@
       "acceleratorForeground": "gray"
     },
 
-    "NavBar.borderColor": "bg1",
+    "NavBar.borderColor": "transparent",
 
     "Notification": {
       "background": "bg1",
@@ -468,7 +471,8 @@
 
     "StatusBar": {
       "background": "bg0_h",
-      "borderColor": "bg0_h",
+      "borderColor": "transparent",
+      "topBorderWidth": 0,
       "hoverBackground": "bg1",
       "Widget.hoverBackground": "bg1",
       "Widget.pressedBackground": "bg2",
@@ -568,6 +572,7 @@
 
     "ToolWindow": {
       "background": "bg0",
+      "borderColor": "transparent",
       "Button.hoverBackground": "bg1",
       "Button.selectedBackground": "bg2",
       "Button.selectedForeground": "fg",
@@ -584,8 +589,8 @@
       "HeaderTab.underlinedTabBackground": "bg1",
       "HeaderTab.underlinedTabInactiveBackground": "bg0_s",
       "Stripe.background": "bg0_h",
-      "Stripe.borderColor": "bg0_h",
-      "Stripe.separatorColor": "bg1"
+      "Stripe.borderColor": "transparent",
+      "Stripe.separatorColor": "border-transparent"
     },
 
     "Tree": {

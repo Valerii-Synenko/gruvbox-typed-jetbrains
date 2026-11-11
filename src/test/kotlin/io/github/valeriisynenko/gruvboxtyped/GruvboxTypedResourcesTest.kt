@@ -83,6 +83,11 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
             val island = colors[ui.getAsJsonObject("Island")["borderColor"].asString].asString
             val gap = colors[ui["MainWindow.background"].asString].asString
             assertFalse(file, island.equals(gap, ignoreCase = true))
+            // Opaque borders around the frame would cut through the project color gradient
+            val flatUi = flatten(ui)
+            for (key in listOf("MainToolbar.borderColor", "StatusBar.borderColor", "ToolWindow.Stripe.borderColor", "ToolWindow.borderColor")) {
+                assertTrue("$file $key", colors[flatUi.getValue(key)].asString.endsWith("00"))
+            }
         }
     }
 
@@ -115,6 +120,15 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         val parent = EditorColorsManager.getInstance().getScheme("Darcula")!!
         return EditorColorsSchemeImpl(parent).apply { readExternal(element) }
     }
+
+    /** Theme keys may be nested ("ToolWindow": {"Stripe.borderColor": ...}); flatten them to "ToolWindow.Stripe.borderColor". */
+    private fun flatten(obj: JsonObject, prefix: String = ""): Map<String, String> = obj.entrySet().flatMap { (key, value) ->
+        val path = if (prefix.isEmpty()) key else "$prefix.$key"
+        when {
+            value.isJsonObject -> flatten(value.asJsonObject, path).toList()
+            else -> listOf(path to value.asString)
+        }
+    }.toMap()
 
     private fun loadTheme(file: String = "GruvboxTypedDark"): JsonObject =
         javaClass.getResourceAsStream("/themes/$file.theme.json")!!.reader().use { JsonParser.parseReader(it).asJsonObject }
