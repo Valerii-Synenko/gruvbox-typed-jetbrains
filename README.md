@@ -1,8 +1,8 @@
 # Gruvbox Typed
 
 ![Build](https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/36009.svg)](https://plugins.jetbrains.com/plugin/36009-gruvbox-typed)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/36009.svg)](https://plugins.jetbrains.com/plugin/36009-gruvbox-typed)
 
 <!-- Plugin description -->
 **Gruvbox Typed** is a dark [Gruvbox](https://github.com/morhetz/gruvbox) theme for JetBrains IDEs
@@ -59,7 +59,7 @@ Test projects have no Python SDK, so the test marks built-in names the way PyCha
 
 - Using JetBrains Marketplace:
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36009-gruvbox-typed) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
 
 - Manually:
 
@@ -127,7 +127,7 @@ Requires JDK 21. The plugin is built against PyCharm 2026.3 and supports IDE bui
 ### Releasing
 
 1. First release: run `./gradlew buildPlugin` and upload `build/distributions/gruvbox-typed-jetbrains-<version>.zip`
-   manually at [plugins.jetbrains.com](https://plugins.jetbrains.com/plugin/add). Then replace `MARKETPLACE_ID` in the badges above.
+   manually at [plugins.jetbrains.com](https://plugins.jetbrains.com/plugin/add) (done for 0.1.0, Marketplace ID `36009`).
 2. Next releases: create a [Marketplace token](https://plugins.jetbrains.com/author/me/tokens) and store it as the
    `PUBLISH_TOKEN` repository secret. Optionally add `CERTIFICATE_CHAIN`, `PRIVATE_KEY` and `PRIVATE_KEY_PASSWORD`
    for [plugin signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html).
