@@ -3,6 +3,7 @@ package io.github.valeriisynenko.gruvboxtyped
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.intellij.openapi.editor.colors.EditorColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.colors.impl.EditorColorsSchemeImpl
 import com.intellij.openapi.util.JDOMUtil
@@ -33,6 +34,19 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         assertEquals(Color(0xFA, 0xBD, 0x2F), scheme.getAttributes(PyHighlighter.PY_ANNOTATION).foregroundColor)
     }
 
+    fun `test hard scheme differs from medium only in backgrounds`() {
+        val medium = loadScheme()
+        val hard = loadScheme("Gruvbox Typed Dark Hard")
+
+        assertEquals("Gruvbox Typed Dark Hard", hard.name)
+        assertEquals(Color(0x1D, 0x20, 0x21), hard.defaultBackground)
+        assertEquals(Color(0x1D, 0x20, 0x21), hard.getColor(EditorColors.GUTTER_BACKGROUND))
+        assertEquals(Color(0x28, 0x28, 0x28), hard.getColor(EditorColors.CARET_ROW_COLOR))
+        for (key in listOf(PyTypeHintHighlighting.TYPE_HINT, PyTypeHintHighlighting.BUILTIN_TYPE_HINT, PyHighlighter.PY_DECORATOR)) {
+            assertEquals(key.externalName, medium.getAttributes(key), hard.getAttributes(key))
+        }
+    }
+
     fun `test theme references existing scheme`() {
         val theme = loadTheme()
 
@@ -61,8 +75,8 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         assertEmpty(unknown)
     }
 
-    private fun loadScheme(): EditorColorsSchemeImpl {
-        val element = JDOMUtil.load(javaClass.getResourceAsStream("/colors/Gruvbox Typed Dark Medium.xml")!!)
+    private fun loadScheme(name: String = "Gruvbox Typed Dark Medium"): EditorColorsSchemeImpl {
+        val element = JDOMUtil.load(javaClass.getResourceAsStream("/colors/$name.xml")!!)
         val parent = EditorColorsManager.getInstance().getScheme("Darcula")!!
         return EditorColorsSchemeImpl(parent).apply { readExternal(element) }
     }

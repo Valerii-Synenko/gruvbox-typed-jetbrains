@@ -15,5 +15,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="io.github.valerii-synenko.gruvbox-typed.dark" path="/themes/GruvboxTypedDark.theme.json"/>
         <bundledColorScheme id="Gruvbox Typed Dark Medium" path="/colors/Gruvbox Typed Dark Medium"/>
+        <!-- Generated at build time from Dark Medium (see generateHardScheme in build.gradle.kts) -->
+        <bundledColorScheme id="Gruvbox Typed Dark Hard" path="/colors/Gruvbox Typed Dark Hard"/>
     </extensions>
 </idea-plugin>

@@ -72,6 +72,36 @@ intellijPlatform {
     }
 }
 
+// The Dark Hard scheme is the Dark Medium scheme on the bg0_h background, generated so the two never drift apart
+val generateHardScheme by tasks.registering {
+    val source = layout.projectDirectory.file("src/main/resources/colors/Gruvbox Typed Dark Medium.xml")
+    val outputDir = layout.buildDirectory.dir("generated/hardScheme")
+    inputs.file(source)
+    outputs.dir(outputDir)
+
+    doLast {
+        val medium = source.asFile.readText()
+        val hard = medium
+            .replace("""<scheme name="Gruvbox Typed Dark Medium"""", """<scheme name="Gruvbox Typed Dark Hard"""")
+            .replace("""">Gruvbox Typed Dark Medium</property>""", """">Gruvbox Typed Dark Hard</property>""")
+            .replace("""Gruvbox Typed Dark Medium editor color scheme.""", """Gruvbox Typed Dark Hard editor color scheme (generated from Dark Medium).""")
+            // bg0 -> bg0_h for every background that uses it
+            .replace("""value="282828"""", """value="1d2021"""")
+            // bg0_s -> bg0 for the caret row, so it stays visible on the darker background
+            .replace("""<option name="CARET_ROW_COLOR" value="32302f" />""", """<option name="CARET_ROW_COLOR" value="282828" />""")
+        check(hard != medium && "Gruvbox Typed Dark Hard" in hard) { "Dark Hard scheme generation did not apply" }
+
+        outputDir.get().file("colors/Gruvbox Typed Dark Hard.xml").asFile.apply {
+            parentFile.mkdirs()
+            writeText(hard)
+        }
+    }
+}
+
+sourceSets.main {
+    resources.srcDir(generateHardScheme)
+}
+
 tasks {
     test {
         // ./gradlew test --tests '*ReadmeScreenshotsTest*' -Pscreenshots regenerates the README images
