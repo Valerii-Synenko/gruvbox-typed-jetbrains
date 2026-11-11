@@ -6,11 +6,12 @@
 
 <!-- Plugin description -->
 **Gruvbox Typed** is a dark [Gruvbox](https://github.com/morhetz/gruvbox) theme for JetBrains IDEs
-with one extra trick for Python: every name inside a type hint gets the same color.
+with one extra trick for Python: names inside type hints always get the same, predictable colors.
 
-Out of the box PyCharm can paint `bool` in `def f(x: bool) -> AuthenticatedUser` as a built-in name
-and `AuthenticatedUser` as an annotation, so one signature mixes two colors.
-Gruvbox Typed highlights both — and everything else inside type hints — with a single **Type hint** color.
+Out of the box PyCharm colors built-in names inside annotations inconsistently: in one file `list[int]` can be
+orange while `bool` next to it is yellow. Gruvbox Typed fixes that. Built-in types (`bool`, `list`, `dict`, `None`, ...)
+always get the **Built-in type in type hint** color (orange), and classes (`AuthenticatedUser`, `UUID`, `Optional`, `T`, ...)
+always get the **Type hint** color (yellow).
 
 What's included:
 
@@ -21,20 +22,20 @@ What's included:
   nested generics, string annotations (`"Foo"`), `TypeAlias`, `type X = ...` and PEP 695 generics (`def f[T](x: T) -> T`).
   Available wherever the Python plugin is installed (PyCharm, IntelliJ IDEA with Python, ...).
 
-The color can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
-and works with any color scheme (it falls back to the scheme's class reference color).
+Both colors can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
+and work with any color scheme (they fall back to the scheme's built-in name and class reference colors).
 
 Gruvbox color palette by Pavel Pertsev (morhetz), MIT License.
 <!-- Plugin description end -->
 
 ## Screenshots
 
-| Before: type hint color off                 | After: Gruvbox Typed                      |
+| Before: type hint colors off                | After: Gruvbox Typed                      |
 |---------------------------------------------|-------------------------------------------|
 | ![Before](.github/readme/python-before.png) | ![After](.github/readme/python-after.png) |
 
-Before, `dict`, `list`, `int` and `tuple` inside annotations come out orange while `str`, `bool` and `Optional` are yellow.
-After, every name inside a type hint uses one color.
+Before, `dict`, `list`, `int` and `tuple` inside annotations come out orange while the equally built-in `str` and `bool` are yellow.
+After, built-in types are always orange and classes are always yellow.
 
 The images are rendered from [`demo/type_hints.py`](demo/type_hints.py) by
 `./gradlew test --tests '*ReadmeScreenshotsTest*' -Pscreenshots` with the bundled color scheme.
@@ -64,8 +65,9 @@ with any other UI theme via <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color
 
 | What                                    | Where                                                                                    |
 |-----------------------------------------|------------------------------------------------------------------------------------------|
-| Type hint color                         | <kbd>Editor</kbd> \| <kbd>Color Scheme</kbd> \| <kbd>Python Type Hints</kbd> \| **Type hint** |
-| Turn type hint coloring off             | Same place: uncheck **Inherit values from** and leave **Foreground** empty                |
+| Classes in type hints                   | <kbd>Editor</kbd> \| <kbd>Color Scheme</kbd> \| <kbd>Python Type Hints</kbd> \| **Type hint** |
+| Built-in types in type hints            | Same page \| **Built-in type in type hint**                                               |
+| Turn type hint coloring off             | Same page: uncheck **Inherit values from** and leave **Foreground** empty for both keys  |
 | Built-in names outside type hints       | <kbd>Editor</kbd> \| <kbd>Color Scheme</kbd> \| <kbd>Python</kbd> \| **Built-in name**    |
 
 What counts as a type hint:
@@ -80,7 +82,7 @@ x = []  # type: list[int]                                             # type com
 ```
 
 Values that merely appear inside annotations, such as the `Field(gt=0)` call in `Annotated[int, Field(gt=0)]`, keep their usual colors.
-Errors and warnings (unresolved references, unused imports) are still drawn on top of the type hint color.
+Errors and warnings (unresolved references, unused imports) are still drawn on top of the type hint colors.
 
 ## How it works
 
@@ -88,11 +90,12 @@ Inside an annotation PyCharm puts two highlighters on a built-in name like `bool
 `PY.BUILTIN_NAME`. Both cover the same range on the same highlighting layer, so the visible color depends on
 the order of the highlighters. That is why built-ins inside type hints change color unpredictably.
 
-Gruvbox Typed registers a Python annotator that marks names inside type hints with the `PY_TYPE_HINT`
-text attributes key and `HighlightSeverity.TEXT_ATTRIBUTES`. That severity puts the highlighter one layer above
-syntax highlighting and below warnings and errors, so the type hint color always wins and unresolved or unused
-references still show. The annotator only looks at syntax and never resolves references, so it is cheap and
-also runs while the IDE is indexing.
+Gruvbox Typed registers a Python annotator that marks names inside type hints with its own text attributes keys:
+`PY_BUILTIN_TYPE_HINT` for classes of Python's `builtins` module and `None`, `PY_TYPE_HINT` for everything else.
+It uses `HighlightSeverity.TEXT_ATTRIBUTES`, which puts the highlighter one layer above syntax highlighting and
+below warnings and errors, so the type hint colors always win and unresolved or unused references still show.
+The annotator only looks at syntax and never resolves references (built-ins are recognized by name),
+so it is cheap and also runs while the IDE is indexing.
 
 ## Development
 

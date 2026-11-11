@@ -28,6 +28,7 @@ class PyTypeHintColorSettingsPage : ColorSettingsPage {
 
     override fun getAttributeDescriptors(): Array<AttributesDescriptor> = arrayOf(
         AttributesDescriptor(GruvboxTypedBundle.message("color.settings.python.type.hint"), PyTypeHintHighlighting.TYPE_HINT),
+        AttributesDescriptor(GruvboxTypedBundle.message("color.settings.python.builtin.type.hint"), PyTypeHintHighlighting.BUILTIN_TYPE_HINT),
         AttributesDescriptor(GruvboxTypedBundle.message("color.settings.python.builtin.name"), PyHighlighter.PY_BUILTIN_NAME),
         AttributesDescriptor(GruvboxTypedBundle.message("color.settings.python.parameter"), PyHighlighter.PY_PARAMETER),
         AttributesDescriptor(GruvboxTypedBundle.message("color.settings.python.function.definition"), PyHighlighter.PY_FUNC_DEFINITION),
@@ -38,6 +39,7 @@ class PyTypeHintColorSettingsPage : ColorSettingsPage {
 
     override fun getAdditionalHighlightingTagToDescriptorMap(): Map<String, TextAttributesKey> = mapOf(
         "hint" to PyTypeHintHighlighting.TYPE_HINT,
+        "bhint" to PyTypeHintHighlighting.BUILTIN_TYPE_HINT,
         "builtin" to PyHighlighter.PY_BUILTIN_NAME,
         "param" to PyHighlighter.PY_PARAMETER,
         "func" to PyHighlighter.PY_FUNC_DEFINITION,
@@ -47,23 +49,23 @@ class PyTypeHintColorSettingsPage : ColorSettingsPage {
     override fun getDemoText(): String = """
         from typing import Optional, TypeAlias
 
-        type <hint>Pair</hint>[<hint>T</hint>] = tuple[<hint>T</hint>, <hint>T</hint>]
-        <hint>UserId</hint>: <hint>TypeAlias</hint> = <hint>int</hint>
+        type Pair[<hint>T</hint>] = <bhint>tuple</bhint>[<hint>T</hint>, <hint>T</hint>]
+        UserId: <hint>TypeAlias</hint> = <bhint>int</bhint>
 
 
         class <class>AuthenticatedUser</class>:
             ...
 
 
-        def <func>authenticate</func>(<param>token</param>: <hint>str</hint>, <param>strict</param>: <hint>bool</hint> | <hint>None</hint> = None) -> <hint>AuthenticatedUser</hint>:
+        def <func>authenticate</func>(<param>token</param>: <bhint>str</bhint>, <param>strict</param>: <bhint>bool</bhint> | <bhint>None</bhint> = None) -> <hint>AuthenticatedUser</hint>:
             <builtin>print</builtin>(<builtin>len</builtin>(token))
 
 
-        def <func>first</func>[<hint>T</hint>](<param>items</param>: <hint>list</hint>[<hint>T</hint>], <param>index</param>: <hint>Optional</hint>[<hint>int</hint>]) -> <hint>T</hint>:
+        def <func>first</func>[<hint>T</hint>](<param>items</param>: <bhint>list</bhint>[<hint>T</hint>], <param>index</param>: <hint>Optional</hint>[<bhint>int</bhint>]) -> <hint>T</hint>:
             ...
 
 
-        def <func>load</func>(<param>raw</param>: <hint>dict</hint>[<hint>str</hint>, <hint>list</hint>[<hint>int</hint>]]) -> "<hint>AuthenticatedUser</hint>":
+        def <func>load</func>(<param>raw</param>: <bhint>dict</bhint>[<bhint>str</bhint>, <bhint>list</bhint>[<bhint>int</bhint>]]) -> "<hint>AuthenticatedUser</hint>":
             ...
     """.trimIndent()
 }

@@ -19,8 +19,10 @@ import com.jetbrains.python.psi.PyTypeAliasStatement
 import com.jetbrains.python.psi.PyTypeParameter
 
 /**
- * Paints every name inside a Python type hint with [PyTypeHintHighlighting.TYPE_HINT], so that
- * `bool` (normally `PY.BUILTIN_NAME`) and `AuthenticatedUser` (normally `PY.ANNOTATION`) look the same.
+ * Gives names inside Python type hints stable colors: built-in types (`bool`, `list`, `None`) get
+ * [PyTypeHintHighlighting.BUILTIN_TYPE_HINT], everything else (`AuthenticatedUser`, `UUID`, `T`) gets
+ * [PyTypeHintHighlighting.TYPE_HINT]. Without it PyCharm's `PY.BUILTIN_NAME` and `PY.ANNOTATION` tie on the
+ * same range and the visible color depends on highlighter order.
  *
  * Purely syntactic (no resolve), so it is safe to run in dumb mode.
  */
@@ -35,13 +37,14 @@ class PyTypeHintAnnotator : Annotator, DumbAware {
         } ?: return
 
         if (!isInTypeHint(element)) return
+        val key = if (isBuiltinType(element)) PyTypeHintHighlighting.BUILTIN_TYPE_HINT else PyTypeHintHighlighting.TYPE_HINT
 
         // TEXT_ATTRIBUTES puts the highlighter on a higher layer than INFORMATION-level annotations
         // (PY.BUILTIN_NAME, PY.ANNOTATION, ...), so the type hint color wins regardless of annotator order,
         // while warnings and errors (unresolved / unused references) still stay on top.
         holder.newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(target)
-            .textAttributes(PyTypeHintHighlighting.TYPE_HINT)
+            .textAttributes(key)
             .create()
     }
 
@@ -67,6 +70,12 @@ class PyTypeHintAnnotator : Annotator, DumbAware {
         return false
     }
 
+    private fun isBuiltinType(element: PsiElement): Boolean = when (element) {
+        is PyNoneLiteralExpression -> true
+        is PyReferenceExpression -> !element.isQualified && element.referencedName in BUILTIN_TYPES
+        else -> false
+    }
+
     private fun isExplicitTypeAlias(assignment: PyAssignmentStatement): Boolean {
         val target = assignment.targets.singleOrNull() as? PyTargetExpression ?: return false
         val annotationValue = target.annotation?.value as? PyReferenceExpression ?: return false
@@ -81,5 +90,26 @@ class PyTypeHintAnnotator : Annotator, DumbAware {
 
     private companion object {
         val TYPE_COMMENT = Regex("""^#\s*type:""")
+
+        /** Classes of Python's `builtins` module, the names PyCharm paints as `PY.BUILTIN_NAME`. */
+        val BUILTIN_TYPES = setOf(
+            "bool", "bytearray", "bytes", "classmethod", "complex", "dict", "enumerate", "filter", "float",
+            "frozendict", "frozenset", "int", "list", "map", "memoryview", "object", "property", "range",
+            "reversed", "sentinel", "set", "slice", "staticmethod", "str", "super", "tuple", "type", "zip",
+            "ArithmeticError", "AssertionError", "AttributeError", "BaseException", "BaseExceptionGroup",
+            "BlockingIOError", "BrokenPipeError", "BufferError", "BytesWarning", "ChildProcessError",
+            "ConnectionAbortedError", "ConnectionError", "ConnectionRefusedError", "ConnectionResetError",
+            "DeprecationWarning", "EOFError", "EncodingWarning", "EnvironmentError", "Exception", "ExceptionGroup",
+            "FileExistsError", "FileNotFoundError", "FloatingPointError", "FutureWarning", "GeneratorExit",
+            "IOError", "ImportCycleError", "ImportError", "ImportWarning", "IndentationError", "IndexError",
+            "InterruptedError", "IsADirectoryError", "KeyError", "KeyboardInterrupt", "LookupError", "MemoryError",
+            "ModuleNotFoundError", "NameError", "NotADirectoryError", "NotImplementedError", "OSError",
+            "OverflowError", "PendingDeprecationWarning", "PermissionError", "ProcessLookupError",
+            "PythonFinalizationError", "RecursionError", "ReferenceError", "ResourceWarning", "RuntimeError",
+            "RuntimeWarning", "StopAsyncIteration", "StopIteration", "SyntaxError", "SyntaxWarning", "SystemError",
+            "SystemExit", "TabError", "TimeoutError", "TypeError", "UnboundLocalError", "UnicodeDecodeError",
+            "UnicodeEncodeError", "UnicodeError", "UnicodeTranslateError", "UnicodeWarning", "UserWarning",
+            "ValueError", "Warning", "ZeroDivisionError",
+        )
     }
 }

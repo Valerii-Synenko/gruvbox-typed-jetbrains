@@ -35,8 +35,9 @@ class ReadmeScreenshotsTest : BasePlatformTestCase() {
 
         render(demo, File(outputDir, "python-after.png")) {}
         render(demo, File(outputDir, "python-before.png")) {
-            // Type hint color turned off: PyCharm's own PY.ANNOTATION / PY.BUILTIN_NAME tie decides again
+            // Type hint colors turned off: PyCharm's own PY.ANNOTATION / PY.BUILTIN_NAME tie decides again
             setAttributes(PyTypeHintHighlighting.TYPE_HINT, TextAttributes())
+            setAttributes(PyTypeHintHighlighting.BUILTIN_TYPE_HINT, TextAttributes())
         }
     }
 

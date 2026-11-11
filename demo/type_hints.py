@@ -1,4 +1,4 @@
-"""Gruvbox Typed demo: every name inside a type hint gets one color."""
+"""Gruvbox Typed demo: stable colors for type hints."""
 
 from dataclasses import dataclass
 from typing import Optional, TypeAlias

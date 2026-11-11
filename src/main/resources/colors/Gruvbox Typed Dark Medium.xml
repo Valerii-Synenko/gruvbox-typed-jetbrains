@@ -344,7 +344,6 @@
     <option name="DEFAULT_FUNCTION_DECLARATION">
       <value>
         <option name="FOREGROUND" value="8ec07c" />
-        <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="DEFAULT_GLOBAL_VARIABLE">
@@ -413,7 +412,7 @@
     </option>
     <option name="DEFAULT_OPERATION_SIGN">
       <value>
-        <option name="FOREGROUND" value="d5c4a1" />
+        <option name="FOREGROUND" value="8ec07c" />
       </value>
     </option>
     <option name="DEFAULT_PARAMETER">
@@ -484,10 +483,15 @@
     </option>
 
     <!-- ===================================================== Python -->
-    <!-- One color for every name inside a type hint, matching built-in names -->
-    <option name="PY_TYPE_HINT">
+    <!-- Names inside type hints: built-in types orange, classes yellow, regardless of highlighter order -->
+    <option name="PY_BUILTIN_TYPE_HINT">
       <value>
         <option name="FOREGROUND" value="fe8019" />
+      </value>
+    </option>
+    <option name="PY_TYPE_HINT">
+      <value>
+        <option name="FOREGROUND" value="fabd2f" />
       </value>
     </option>
     <!-- PyCharm's per-name annotation color; PY_TYPE_HINT is drawn above it (and above PY.BUILTIN_NAME) -->
@@ -527,12 +531,11 @@
     <option name="PY.FUNC_DEFINITION">
       <value>
         <option name="FOREGROUND" value="8ec07c" />
-        <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="PY.FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="689d6a" />
+        <option name="FOREGROUND" value="8ec07c" />
       </value>
     </option>
     <option name="PY.KEYWORD_ARGUMENT">
@@ -542,8 +545,7 @@
     </option>
     <option name="PY.NESTED_FUNC_DEFINITION">
       <value>
-        <option name="FOREGROUND" value="689d6a" />
-        <option name="FONT_TYPE" value="1" />
+        <option name="FOREGROUND" value="8ec07c" />
       </value>
     </option>
     <option name="PY.PARAMETER">

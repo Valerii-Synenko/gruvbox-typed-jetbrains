@@ -8,5 +8,5 @@
 
 - Gruvbox Typed Dark UI theme based on the Gruvbox Dark Medium palette
 - Gruvbox Typed Dark Medium editor color scheme
-- Python type hint highlighting with a dedicated "Type hint" color that overrides built-in name coloring
+- Python type hint highlighting with stable colors: "Built-in type in type hint" for `bool`, `list`, `None`, ... and "Type hint" for classes
 - Settings | Editor | Color Scheme | Python Type Hints page

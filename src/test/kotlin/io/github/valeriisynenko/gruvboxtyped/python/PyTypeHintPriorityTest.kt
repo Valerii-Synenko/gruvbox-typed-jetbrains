@@ -24,6 +24,8 @@ class PyTypeHintPriorityTest : BasePlatformTestCase() {
     private val typeHintColor = Color(0xFA, 0xBD, 0x2F)
     private val builtinColor = Color(0xFE, 0x80, 0x19)
     private val annotationColor = Color(0x11, 0x22, 0x33)
+    // Deliberately different from builtinColor to prove our key, not PY.BUILTIN_NAME, is painted
+    private val builtinTypeHintColor = Color(0x44, 0x55, 0x66)
 
     fun `test type hint color wins over builtin name registered before`() {
         LanguageAnnotators.INSTANCE.addExplicitExtension(PythonLanguage.INSTANCE, BuiltinLikeAnnotator(), testRootDisposable)
@@ -48,7 +50,7 @@ class PyTypeHintPriorityTest : BasePlatformTestCase() {
     fun `test empty type hint color falls back to regular highlighting`() {
         LanguageAnnotators.INSTANCE.addExplicitExtension(PythonLanguage.INSTANCE, BuiltinLikeAnnotator(), testRootDisposable)
         configure("def f(x: bool) -> int: ...\n")
-        myFixture.editor.colorsScheme.setAttributes(PyTypeHintHighlighting.TYPE_HINT, TextAttributes())
+        myFixture.editor.colorsScheme.setAttributes(PyTypeHintHighlighting.BUILTIN_TYPE_HINT, TextAttributes())
 
         // PyCharm's own PY.ANNOTATION and PY.BUILTIN_NAME tie on this range, so either of them may win
         assertContainsElements(listOf(builtinColor, annotationColor), foregroundAt("bool)"))
@@ -64,7 +66,7 @@ class PyTypeHintPriorityTest : BasePlatformTestCase() {
             """.trimIndent()
         )
 
-        assertEquals(typeHintColor, foregroundAt("bool)"))
+        assertEquals(builtinTypeHintColor, foregroundAt("bool)"))
         assertEquals(typeHintColor, foregroundAt("AuthenticatedUser:\n"))
     }
 
@@ -73,6 +75,7 @@ class PyTypeHintPriorityTest : BasePlatformTestCase() {
         // The editor's own scheme delegate keeps per-editor overrides, so the global scheme stays untouched
         val scheme = myFixture.editor.colorsScheme
         scheme.setAttributes(PyTypeHintHighlighting.TYPE_HINT, attributes(typeHintColor))
+        scheme.setAttributes(PyTypeHintHighlighting.BUILTIN_TYPE_HINT, attributes(builtinTypeHintColor))
         scheme.setAttributes(PyHighlighter.PY_BUILTIN_NAME, attributes(builtinColor))
         scheme.setAttributes(PyHighlighter.PY_ANNOTATION, attributes(annotationColor))
         myFixture.doHighlighting()
