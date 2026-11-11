@@ -1,0 +1,8 @@
+<!-- Loaded only when the Python plugin (com.intellij.modules.python) is available -->
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="Python"
+                   implementationClass="io.github.valeriisynenko.gruvboxtyped.python.PyTypeHintAnnotator"/>
+        <colorSettingsPage implementation="io.github.valeriisynenko.gruvboxtyped.python.PyTypeHintColorSettingsPage"/>
+    </extensions>
+</idea-plugin>

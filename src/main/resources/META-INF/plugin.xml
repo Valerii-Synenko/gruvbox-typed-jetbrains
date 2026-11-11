@@ -1,0 +1,19 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>io.github.valerii-synenko.gruvbox-typed</id>
+    <name>Gruvbox Typed</name>
+    <vendor url="https://github.com/Valerii-Synenko">Valerii Synenko</vendor>
+
+    <!-- The description is taken from the "Plugin description" section of README.md at build time -->
+
+    <depends>com.intellij.modules.platform</depends>
+    <!-- Type hint highlighting only where Python support is installed (PyCharm, IDEA + Python plugin, ...) -->
+    <depends optional="true" config-file="plugin-python.xml">com.intellij.modules.python</depends>
+
+    <resource-bundle>messages.GruvboxTypedBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <themeProvider id="io.github.valerii-synenko.gruvbox-typed.dark" path="/themes/GruvboxTypedDark.theme.json"/>
+        <bundledColorScheme id="Gruvbox Typed Dark Medium" path="/colors/Gruvbox Typed Dark Medium"/>
+    </extensions>
+</idea-plugin>
