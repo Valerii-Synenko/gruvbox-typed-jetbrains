@@ -10,6 +10,7 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.jetbrains.python.highlighting.PyHighlighter
 import io.github.valeriisynenko.gruvboxtyped.python.PyTypeHintHighlighting
 import java.awt.Color
+import java.awt.Font
 
 /**
  * Headless tests don't install bundled themes and schemes, so the resources are loaded directly.
@@ -22,7 +23,9 @@ class GruvboxTypedResourcesTest : BasePlatformTestCase() {
         assertEquals("Gruvbox Typed Dark Medium", scheme.name)
         assertEquals(Color(0x28, 0x28, 0x28), scheme.defaultBackground)
         assertEquals(Color(0xEB, 0xDB, 0xB2), scheme.defaultForeground)
-        assertEquals(Color(0xFA, 0xBD, 0x2F), scheme.getAttributes(PyTypeHintHighlighting.TYPE_HINT).foregroundColor)
+        assertEquals(Color(0xFE, 0x80, 0x19), scheme.getAttributes(PyTypeHintHighlighting.TYPE_HINT).foregroundColor)
+        assertEquals(Color(0xFA, 0xBD, 0x2F), scheme.getAttributes(PyHighlighter.PY_DECORATOR).foregroundColor)
+        assertEquals(Font.BOLD, scheme.getAttributes(PyHighlighter.PY_DECORATOR).fontType)
         assertEquals(Color(0xFE, 0x80, 0x19), scheme.getAttributes(PyHighlighter.PY_BUILTIN_NAME).foregroundColor)
         assertEquals(Color(0x68, 0x9D, 0x6A), scheme.getAttributes(PyHighlighter.PY_FUNCTION_CALL).foregroundColor)
         assertEquals(Color(0xFA, 0xBD, 0x2F), scheme.getAttributes(PyHighlighter.PY_ANNOTATION).foregroundColor)
