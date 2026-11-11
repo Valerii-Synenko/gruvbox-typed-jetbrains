@@ -25,8 +25,6 @@ What's included:
 
 Both colors can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
 and work with any color scheme (they fall back to the scheme's built-in name and class reference colors).
-
-Gruvbox color palette by Pavel Pertsev (morhetz), MIT License.
 <!-- Plugin description end -->
 
 ## Screenshots
