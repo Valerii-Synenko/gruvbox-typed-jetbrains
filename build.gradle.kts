@@ -143,5 +143,7 @@ tasks {
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.empty()
+    // Release tags are created without a "v" prefix (see .github/workflows/build.yml)
+    versionPrefix = ""
     repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
 }
