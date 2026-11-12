@@ -9,7 +9,7 @@ import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.Icon
 
 /**
- * File and folder icons for tool files (AI assistant folders, uv, Poetry, Ruff, ty, `.gitignore`, pre-commit).
+ * File and folder icons for tool files (AI assistant folders, uv, Poetry, Ruff, ty, Pyrefly, `.gitignore`, pre-commit).
  * They are part of the Gruvbox Typed look, so they show up only while a Gruvbox Typed UI theme is active.
  */
 class GruvboxTypedFileIconProvider : FileIconProvider, DumbAware {
@@ -43,6 +43,7 @@ class GruvboxTypedFileIconProvider : FileIconProvider, DumbAware {
             "ruff.toml" to RUFF,
             ".ruff.toml" to RUFF,
             "ty.toml" to icon("ty"),
+            "pyrefly.toml" to icon("pyrefly"),
             ".gitignore" to icon("gitignore"),
             ".pre-commit-config.yaml" to icon("preCommit"),
             ".pre-commit-hooks.yaml" to icon("preCommit"),

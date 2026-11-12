@@ -24,7 +24,7 @@ What's included:
   Available wherever the Python plugin is installed (PyCharm, IntelliJ IDEA with Python, ...).
 - **File icons** with the Gruvbox Typed themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`,
   `.junie`, `.windsurf`), uv (`uv.lock`, `uv.toml`), Poetry (`poetry.lock`, `poetry.toml`),
-  Ruff (`ruff.toml`, `.ruff.toml`), ty (`ty.toml`), `.gitignore`,
+  Ruff (`ruff.toml`, `.ruff.toml`), ty (`ty.toml`), Pyrefly (`pyrefly.toml`), `.gitignore`,
   `.pre-commit-config.yaml` and `.pre-commit-hooks.yaml`.
 
 Both colors can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
@@ -141,7 +141,7 @@ Requires JDK 21. The plugin is built against PyCharm 2026.3 and supports IDE bui
 
 - Gruvbox palette: [morhetz/gruvbox](https://github.com/morhetz/gruvbox) by Pavel Pertsev, MIT License.
 - Inspired by [jdinhify/vscode-theme-gruvbox](https://github.com/jdinhify/vscode-theme-gruvbox).
-- uv, Poetry, Ruff and `.gitignore` icons, folder shape: [IntelliJ Community](https://github.com/JetBrains/intellij-community) by JetBrains, Apache 2.0 License.
+- uv, Poetry, Ruff, Pyrefly and `.gitignore` icons, folder shape: [IntelliJ Community](https://github.com/JetBrains/intellij-community) by JetBrains, Apache 2.0 License.
 - `.pre-commit-config.yaml` icon: based on the [pre-commit](https://pre-commit.com) logo.
 - AI assistant badges are simplified drawings that only mark the tool's folder. All product names and marks belong
   to their owners, and this plugin is not affiliated with them.

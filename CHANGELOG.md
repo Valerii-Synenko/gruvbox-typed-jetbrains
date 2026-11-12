@@ -6,7 +6,7 @@
 
 ### Added
 
-- File icons, shown with the Gruvbox Typed UI themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`, `.junie`, `.windsurf`), uv, Poetry, Ruff, ty, `.gitignore`, `.pre-commit-config.yaml` and `.pre-commit-hooks.yaml`
+- File icons, shown with the Gruvbox Typed UI themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`, `.junie`, `.windsurf`), uv, Poetry, Ruff, ty, Pyrefly, `.gitignore`, `.pre-commit-config.yaml` and `.pre-commit-hooks.yaml`
 
 ### Changed
 

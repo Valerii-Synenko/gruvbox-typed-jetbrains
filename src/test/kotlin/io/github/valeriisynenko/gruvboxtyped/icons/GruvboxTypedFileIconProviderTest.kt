@@ -7,7 +7,7 @@ import io.github.valeriisynenko.gruvboxtyped.icons.GruvboxTypedFileIconProvider.
 class GruvboxTypedFileIconProviderTest : BasePlatformTestCase() {
 
     fun `test icons by file name`() {
-        for (name in listOf("uv.lock", "uv.toml", "poetry.lock", "poetry.toml", "ruff.toml", ".ruff.toml", "ty.toml", ".gitignore", ".pre-commit-config.yaml", ".pre-commit-hooks.yaml")) {
+        for (name in listOf("uv.lock", "uv.toml", "poetry.lock", "poetry.toml", "ruff.toml", ".ruff.toml", "ty.toml", "pyrefly.toml", ".gitignore", ".pre-commit-config.yaml", ".pre-commit-hooks.yaml")) {
             val icon = iconFor(name, isDirectory = false)
             assertNotNull(name, icon)
             assertEquals(name, 16, icon!!.iconWidth)
