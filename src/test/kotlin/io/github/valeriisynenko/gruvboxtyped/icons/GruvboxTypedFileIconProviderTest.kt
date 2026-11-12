@@ -3,6 +3,7 @@ package io.github.valeriisynenko.gruvboxtyped.icons
 import com.intellij.openapi.util.JDOMUtil
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import io.github.valeriisynenko.gruvboxtyped.icons.GruvboxTypedFileIconProvider.Companion.iconFor
+import java.io.File
 
 class GruvboxTypedFileIconProviderTest : BasePlatformTestCase() {
 
@@ -10,10 +11,22 @@ class GruvboxTypedFileIconProviderTest : BasePlatformTestCase() {
         for (name in listOf("uv.lock", "uv.toml", "poetry.lock", "poetry.toml", "ruff.toml", ".ruff.toml", "ty.toml", "pyrefly.toml", ".gitignore", ".pre-commit-config.yaml", ".pre-commit-hooks.yaml")) {
             val icon = iconFor(name, isDirectory = false)
             assertNotNull(name, icon)
-            assertEquals(name, 16, icon!!.iconWidth)
+            assertTrue(name, icon!!.iconWidth > 0)
         }
         for (name in listOf(".claude", ".codex", ".cursor", ".gemini", ".junie", ".windsurf")) {
             assertNotNull(name, iconFor(name, isDirectory = true))
+        }
+    }
+
+    // The rendered size depends on the screen scale (it differs on CI), so the declared SVG size is checked instead
+    fun `test icons are 16x16`() {
+        // Tests run from the project directory; the plugin resources are packed into a jar on the classpath
+        val icons = File("src/main/resources/icons").listFiles { file -> file.extension == "svg" }!!
+        assertNotEmpty(icons.toList())
+        for (file in icons) {
+            val svg = JDOMUtil.load(file)
+            assertEquals(file.name, "16", svg.getAttributeValue("width"))
+            assertEquals(file.name, "16", svg.getAttributeValue("height"))
         }
     }
 
