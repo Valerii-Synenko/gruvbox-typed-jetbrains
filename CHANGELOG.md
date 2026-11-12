@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Removed the palette credit line from the plugin description (the credit stays in the README and LICENSE)
+
 ## [0.1.0] - 2026-11-11
 
 ### Added
