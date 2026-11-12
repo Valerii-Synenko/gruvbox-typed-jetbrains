@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- File icons for the `.claude` folder, uv (`uv.lock`, `uv.toml`), Poetry (`poetry.lock`, `poetry.toml`) and `.gitignore`, shown with the Gruvbox Typed UI themes
+
 ### Changed
 
 - Removed the palette credit line from the plugin description (the credit stays in the README and LICENSE)

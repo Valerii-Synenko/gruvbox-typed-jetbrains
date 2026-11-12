@@ -18,5 +18,11 @@
         <themeProvider id="io.github.valerii-synenko.gruvbox-typed.dark-hard" path="/themes/GruvboxTypedDarkHard.theme.json"/>
         <bundledColorScheme id="Gruvbox Typed Dark Medium" path="/colors/Gruvbox Typed Dark Medium"/>
         <bundledColorScheme id="Gruvbox Typed Dark Hard" path="/colors/Gruvbox Typed Dark Hard"/>
+        <!-- order="first": PyCharm has its own icons for some of these files -->
+        <fileIconProvider implementation="io.github.valeriisynenko.gruvboxtyped.icons.GruvboxTypedFileIconProvider" order="first"/>
     </extensions>
+
+    <applicationListeners>
+        <listener class="io.github.valeriisynenko.gruvboxtyped.icons.GruvboxTypedThemeListener" topic="com.intellij.ide.ui.LafManagerListener"/>
+    </applicationListeners>
 </idea-plugin>

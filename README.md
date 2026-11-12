@@ -22,6 +22,8 @@ What's included:
 - **Python type hint highlighting** for parameter, return and variable annotations, `Optional[...]`, `X | None`,
   nested generics, string annotations (`"Foo"`), `TypeAlias`, `type X = ...` and PEP 695 generics (`def f[T](x: T) -> T`).
   Available wherever the Python plugin is installed (PyCharm, IntelliJ IDEA with Python, ...).
+- **File icons** with the Gruvbox Typed themes: the `.claude` folder, uv (`uv.lock`, `uv.toml`),
+  Poetry (`poetry.lock`, `poetry.toml`) and `.gitignore`.
 
 Both colors can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
 and work with any color scheme (they fall back to the scheme's built-in name and class reference colors).
@@ -137,6 +139,7 @@ Requires JDK 21. The plugin is built against PyCharm 2026.3 and supports IDE bui
 
 - Gruvbox palette: [morhetz/gruvbox](https://github.com/morhetz/gruvbox) by Pavel Pertsev, MIT License.
 - Inspired by [jdinhify/vscode-theme-gruvbox](https://github.com/jdinhify/vscode-theme-gruvbox).
+- uv and Poetry icons, folder and branch shapes: [IntelliJ Community](https://github.com/JetBrains/intellij-community) by JetBrains, Apache 2.0 License.
 
 ## License
 
