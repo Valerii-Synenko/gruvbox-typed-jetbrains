@@ -9,7 +9,7 @@ import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.Icon
 
 /**
- * File and folder icons for tool files (`.claude`, uv, Poetry, `.gitignore`).
+ * File and folder icons for tool files (AI assistant folders, uv, Poetry, `.gitignore`, pre-commit).
  * They are part of the Gruvbox Typed look, so they show up only while a Gruvbox Typed UI theme is active.
  */
 class GruvboxTypedFileIconProvider : FileIconProvider, DumbAware {
@@ -21,19 +21,27 @@ class GruvboxTypedFileIconProvider : FileIconProvider, DumbAware {
         /** Ids of the `themeProvider` extensions in plugin.xml. */
         val THEME_IDS = setOf("io.github.valerii-synenko.gruvbox-typed.dark", "io.github.valerii-synenko.gruvbox-typed.dark-hard")
 
-        private val CLAUDE_FOLDER = icon("claudeFolder")
         private val UV = icon("uv")
         private val POETRY = icon("poetry")
-        private val GITIGNORE = icon("gitignore")
 
-        private val FOLDERS = mapOf(".claude" to CLAUDE_FOLDER)
+        /** AI assistant folders get the standard folder icon with the tool's badge. */
+        private val FOLDERS = mapOf(
+            ".claude" to icon("folderClaude"),
+            ".codex" to icon("folderCodex"),
+            ".cursor" to icon("folderCursor"),
+            ".gemini" to icon("folderGemini"),
+            ".junie" to icon("folderJunie"),
+            ".windsurf" to icon("folderWindsurf"),
+        )
 
         private val FILES = mapOf(
             "uv.lock" to UV,
             "uv.toml" to UV,
             "poetry.lock" to POETRY,
             "poetry.toml" to POETRY,
-            ".gitignore" to GITIGNORE,
+            ".gitignore" to icon("gitignore"),
+            ".pre-commit-config.yaml" to icon("preCommit"),
+            ".pre-commit-config.yml" to icon("preCommit"),
         )
 
         fun iconFor(name: String, isDirectory: Boolean): Icon? = if (isDirectory) FOLDERS[name] else FILES[name]

@@ -1,8 +1,8 @@
-<!-- Branch shape: IntelliJ Platform expui/general/vcs_dark.svg, Copyright 2000-2023 JetBrains s.r.o. and contributors, Apache 2.0 license. -->
+<!-- Gruvbox Typed: the Git logo (by Jason Long, CC BY 3.0) redrawn as a rounded square. -->
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="4.5" cy="4" r="2" stroke="#FE8019"/>
-<path d="M4.5 11H8.5C9.60457 11 10.5 10.1046 10.5 9V7.5" stroke="#FE8019"/>
-<path d="M4.5 6.5L4.5 14.5" stroke="#FE8019" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="10.5" cy="6" r="2" stroke="#FE8019"/>
-<path d="M2 14L14 2" stroke="#FB4934" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="1.5" y="1.5" width="13" height="13" rx="2.5" fill="#F05033"/>
+<path d="M6 3.5V11M6 5.8L10.3 8" stroke="#282828" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="6" cy="5.8" r="1.3" fill="#282828"/>
+<circle cx="6" cy="11" r="1.3" fill="#282828"/>
+<circle cx="10.3" cy="8.2" r="1.3" fill="#282828"/>
 </svg>

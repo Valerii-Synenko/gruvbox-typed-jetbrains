@@ -6,7 +6,7 @@
 
 ### Added
 
-- File icons for the `.claude` folder, uv (`uv.lock`, `uv.toml`), Poetry (`poetry.lock`, `poetry.toml`) and `.gitignore`, shown with the Gruvbox Typed UI themes
+- File icons, shown with the Gruvbox Typed UI themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`, `.junie`, `.windsurf`), uv, Poetry, `.gitignore` and `.pre-commit-config.yaml`
 
 ### Changed
 

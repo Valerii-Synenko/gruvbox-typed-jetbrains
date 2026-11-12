@@ -1,0 +1,6 @@
+<!-- Gruvbox Typed: the pre-commit logo redrawn as a rounded square. -->
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1.5" y="1.5" width="13" height="13" rx="2.5" fill="#FAB040"/>
+<rect x="3.2" y="3.2" width="9.6" height="9.6" rx="1.5" stroke="#282828"/>
+<path d="M6.6 11V5H8.9C10 5 10.7 5.7 10.7 6.7C10.7 7.7 10 8.4 8.9 8.4H6.6" stroke="#282828" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
