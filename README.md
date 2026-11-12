@@ -140,8 +140,7 @@ Requires JDK 21. The plugin is built against PyCharm 2026.3 and supports IDE bui
 
 - Gruvbox palette: [morhetz/gruvbox](https://github.com/morhetz/gruvbox) by Pavel Pertsev, MIT License.
 - Inspired by [jdinhify/vscode-theme-gruvbox](https://github.com/jdinhify/vscode-theme-gruvbox).
-- uv and Poetry icons, folder shape: [IntelliJ Community](https://github.com/JetBrains/intellij-community) by JetBrains, Apache 2.0 License.
-- `.gitignore` icon: based on the [Git logo](https://git-scm.com/downloads/logos) by Jason Long, CC BY 3.0.
+- uv, Poetry and `.gitignore` icons, folder shape: [IntelliJ Community](https://github.com/JetBrains/intellij-community) by JetBrains, Apache 2.0 License.
 - `.pre-commit-config.yaml` icon: based on the [pre-commit](https://pre-commit.com) logo.
 - AI assistant badges are simplified drawings that only mark the tool's folder. All product names and marks belong
   to their owners, and this plugin is not affiliated with them.
