@@ -65,6 +65,11 @@ intellijPlatform {
         }
     }
 
+    // The Release workflow passes the Marketplace token; signing is optional, Marketplace signs plugins itself
+    publishing {
+        token = providers.environmentVariable("PUBLISH_TOKEN")
+    }
+
     pluginVerification {
         ides {
             recommended()
