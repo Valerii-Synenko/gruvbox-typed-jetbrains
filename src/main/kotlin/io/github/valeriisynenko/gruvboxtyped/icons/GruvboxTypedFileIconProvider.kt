@@ -41,7 +41,7 @@ class GruvboxTypedFileIconProvider : FileIconProvider, DumbAware {
             "poetry.toml" to POETRY,
             ".gitignore" to icon("gitignore"),
             ".pre-commit-config.yaml" to icon("preCommit"),
-            ".pre-commit-config.yml" to icon("preCommit"),
+            ".pre-commit-hooks.yaml" to icon("preCommit"),
         )
 
         fun iconFor(name: String, isDirectory: Boolean): Icon? = if (isDirectory) FOLDERS[name] else FILES[name]

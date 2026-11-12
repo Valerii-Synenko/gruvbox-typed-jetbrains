@@ -23,8 +23,8 @@ What's included:
   nested generics, string annotations (`"Foo"`), `TypeAlias`, `type X = ...` and PEP 695 generics (`def f[T](x: T) -> T`).
   Available wherever the Python plugin is installed (PyCharm, IntelliJ IDEA with Python, ...).
 - **File icons** with the Gruvbox Typed themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`,
-  `.junie`, `.windsurf`), uv (`uv.lock`, `uv.toml`), Poetry (`poetry.lock`, `poetry.toml`), `.gitignore` and
-  `.pre-commit-config.yaml`.
+  `.junie`, `.windsurf`), uv (`uv.lock`, `uv.toml`), Poetry (`poetry.lock`, `poetry.toml`), `.gitignore`,
+  `.pre-commit-config.yaml` and `.pre-commit-hooks.yaml`.
 
 Both colors can be changed in <kbd>Settings</kbd> | <kbd>Editor</kbd> | <kbd>Color Scheme</kbd> | <kbd>Python Type Hints</kbd>
 and work with any color scheme (they fall back to the scheme's built-in name and class reference colors).
