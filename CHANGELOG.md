@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-12
+
 ### Added
 
 - File icons, shown with the Gruvbox Typed UI themes: AI assistant folders (`.claude`, `.codex`, `.cursor`, `.gemini`, `.junie`, `.windsurf`), uv, Poetry, Ruff, ty, Pyrefly, `.gitignore`, `.pre-commit-config.yaml` and `.pre-commit-hooks.yaml`
@@ -23,5 +25,6 @@
 - Python type hint highlighting with stable colors: "Built-in type in type hint" for `bool`, `list`, `None`, ... and "Type hint" for classes
 - Settings | Editor | Color Scheme | Python Type Hints page
 
-[Unreleased]: https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/Valerii-Synenko/gruvbox-typed-jetbrains/commits/0.1.0
